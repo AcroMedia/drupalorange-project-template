@@ -16,7 +16,7 @@
         },
         "commerce_base": {
             "type": "vcs",
-            "url": "https://github.com/drupalcommerce/commerce_base"
+            "url": "https://git.drupal.org/sandbox/cbildstein/2766559.git"
         }
     },
     "require": {
@@ -27,7 +27,7 @@
         "drupal/core": "~8.1.0",
         "drupal/console": "~1.0",
         "drupal/commerce": "2.x-dev",
-        "drupalcommerce/commerce_base": "dev-8.x-1.x"
+        "AcroMedia/drupalorange_profile": "dev-1.x"
     },
     "require-dev": {
         "behat/mink": "~1.7",
