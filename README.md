@@ -4,7 +4,8 @@
 
 Use [Composer](https://getcomposer.org/) to get Drupal + Commerce 2.x with all dependencies.
 
-Based on [drupal-composer/drupal-project](https://github.com/drupal-composer/drupal-project).
+Fork of [drupalcommerce/project-base](https://github.com/drupalcommerce/project-base). Which is based on 
+[drupal-composer/drupal-project](https://github.com/drupal-composer/drupal-project).
 
 ## Usage
 
