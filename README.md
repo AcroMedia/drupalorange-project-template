@@ -1,6 +1,6 @@
-# Commerce 2.x project template
+# Drupal Orange Project Template
 
-[![Build Status](https://travis-ci.org/drupalcommerce/project-base.svg?branch=8.x)](https://travis-ci.org/drupalcommerce/project-base)
+[![Build Status](https://travis-ci.org/AcroMedia/drupalorange-project-template.svg?branch=8.x)](https://travis-ci.org/AcroMedia/drupalorange-project-template)
 
 Use [Composer](https://getcomposer.org/) to get Drupal + Commerce 2.x with all dependencies.
 
@@ -17,7 +17,7 @@ for your setup.
 After that you can create the project:
 
 ```
-composer create-project drupalcommerce/project-base some-dir --stability dev --no-interaction
+composer create-project AcroMedia/drupalorange-project-template some-dir --stability dev --no-interaction
 ```
 
 Done! Use `composer require ...` to download additional modules and themes:
@@ -70,7 +70,7 @@ Follow the steps below to update your core files.
 ### Should I commit the contrib modules I download
 
 Composer recommends **no**. They provide [argumentation against but also
-workrounds if a project decides to do it anyway](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md).
+workarounds if a project decides to do it anyway](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md).
 
 ### How can I apply patches to downloaded modules?
 
