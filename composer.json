@@ -27,7 +27,7 @@
         "drupal/core": "~8.1.0",
         "drupal/console": "~1.0",
         "drupal/commerce": "2.x-dev",
-        "AcroMedia/drupalorange_profile": "dev-1.x"
+        "AcroMedia/drupalorange_profile": "1.x"
     },
     "require-dev": {
         "behat/mink": "~1.7",
