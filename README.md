@@ -18,7 +18,7 @@ for your setup.
 After that you can create the project:
 
 ```
-composer create-project AcroMedia/drupalorange-project-template some-dir --stability dev --no-interaction
+composer create-project acromedia/drupalorange-project-template some-dir --stability dev --no-interaction
 ```
 
 Done! Use `composer require ...` to download additional modules and themes:
