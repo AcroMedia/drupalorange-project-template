@@ -1,5 +1,5 @@
 {
-    "name": "drupalcommerce/project-base",
+    "name": "AcroMedia/drupalorange-project-template",
     "description": "Commerce 2.x project template",
     "type": "project",
     "license": "GPL-2.0+",
@@ -13,10 +13,6 @@
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        "commerce_base": {
-            "type": "vcs",
-            "url": "https://git.drupal.org/sandbox/cbildstein/2766559.git"
         }
     },
     "require": {
