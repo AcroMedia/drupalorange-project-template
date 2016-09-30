@@ -15,14 +15,19 @@
             "url": "https://packages.drupal.org/8"
         }
     },
+    "config": {
+      "bin-dir": "bin"
+    },
     "require": {
         "ext-curl": "*",
         "composer/installers": "^1.0.20",
         "drupal-composer/drupal-scaffold": "^2.0.1",
         "cweagans/composer-patches": "~1.0",
-        "drupal/core": "~8.1.0",
+        "drupal/core": "~8.2.0",
         "drupal/console": "~1.0",
-        "drupal/commerce": "2.x-dev",
+        "drupal/commerce": "2.0-beta1",
+        "drupal/config_inspector": "1.x-dev",
+        "drupal/entity": "1.x",
         "acromedia/drupalorange_profile": "dev-8.x-1.x"
     },
     "require-dev": {
