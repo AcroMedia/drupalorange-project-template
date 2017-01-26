@@ -35,11 +35,20 @@ class ScriptHandler {
       }
     }
 
+    // Required for configuration manager
+    if (!$fs->exists($root . '/sites/default/sync')) {
+      $fs->mkdir($root . '/sites/default/sync');
+    }
+
     // Prepare the settings file for installation
     if (!$fs->exists($root . '/sites/default/settings.php') and $fs->exists($root . '/sites/default/default.settings.php')) {
       $fs->copy($root . '/sites/default/default.settings.php', $root . '/sites/default/settings.php');
+      $fs->touch($root . '/sites/default/settings.local.php');
       $fs->chmod($root . '/sites/default/settings.php', 0666);
-      $event->getIO()->write("Create a sites/default/settings.php file with chmod 0666");
+      $fs->chmod($root . '/sites/default/settings.local.php', 0666);
+      $event->getIO()->write("Create a sites/default/settings.php and sites/default/settings.local.php files with chmod 0666");
+      $event->getIO()->write("Make sure you move the database configuration from sites/defaul/settings.php to sites/default/settings.local.php");
+      $event->getIO()->write("Make sure you update the `config_directories['sync']` in sites/default/settings.php to `sites/default/sync`");
     }
 
     // Prepare the services file for installation
