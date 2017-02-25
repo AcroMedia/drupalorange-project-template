@@ -89,7 +89,8 @@
         },
         "patches": {
             "drupal/core": {
-                "Redirect to install.php on empty DB": "https://www.drupal.org/files/issues/728702-163.patch"
+                "Redirect to install.php on empty DB": "https://www.drupal.org/files/issues/728702-163.patch",
+                "Allow read-only config directories": "https://www.drupal.org/files/issues/drupal-2607352-6.patch"
             }
         }
     },
