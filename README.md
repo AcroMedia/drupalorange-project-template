@@ -1,4 +1,4 @@
-# Drupal Orange Project Template
+# Drupal Orange Project Template (Platform.sh)
 
 [![Build Status](https://travis-ci.org/AcroMedia/drupalorange-project-template.svg?branch=8.x)](https://travis-ci.org/AcroMedia/drupalorange-project-template)
 
@@ -6,6 +6,19 @@ Use [Composer](https://getcomposer.org/) to get Drupal + Commerce 2.x with all d
 
 Fork of [drupalcommerce/project-base](https://github.com/drupalcommerce/project-base). Which is based on 
 [drupal-composer/drupal-project](https://github.com/drupal-composer/drupal-project).
+
+## How does this starter kit differ from vanilla Project Template?
+
+1. The `vendor` directory (where non-Drupal code lives) and the `config` directory
+   (used for syncing configuration from development to production) are outside
+   the web root. This is a bit more secure as those files are now not web-accessible.
+
+2. The `settings.php` and `settings.platformsh.php` files are provided by
+   default. The `settings.platformsh.php` file automatically sets up the database connection on Platform.sh, and allows controlling Drupal configuration from environment variables.
+
+3. We include recommended `.platform.app.yaml` and `.platform` files that should suffice
+   for most use cases. You are free to tweak them as needed for your particular site.
+
 
 ## Usage
 
