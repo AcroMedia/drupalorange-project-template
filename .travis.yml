@@ -11,28 +11,29 @@ env:
     - SIMPLETEST_DB=sqlite://tmp/site.sqlite
     - SIMPLETEST_BASE_URL="http://127.0.0.1:8080"
   matrix:
-    - RELEASE=stable
-    - RELEASE=dev
+    - RELEASE=stable COMPOSER_CHANNEL=stable
+    - RELEASE=dev COMPOSER_CHANNEL=stable
+    - RELEASE=stable COMPOSER_CHANNEL=snapshot
 
 before_install:
   - echo 'sendmail_path = /bin/true' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
   - phpenv config-rm xdebug.ini
-  - composer --verbose self-update
+  - composer --verbose self-update --$COMPOSER_CHANNEL
   - composer --version
 
 install:
   - composer --verbose install
 
 script:
-  - if [[ $RELEASE = dev ]]; then composer --verbose require --no-update drupal/core:8.1.x-dev; fi;
+  - if [[ $RELEASE = dev ]]; then composer --verbose require --no-update drupal/core:8.2.x-dev; fi;
   - if [[ $RELEASE = dev ]]; then composer --verbose update; fi;
   - cd $TRAVIS_BUILD_DIR/web
-  - ./../vendor/bin/drupal --version
-  - ./../vendor/bin/drupal init
-  - ./../vendor/bin/drupal site:install --db-type=sqlite --db-file=sites/default/files/.ht.sqlite --no-interaction --site-name=DrupalOrangeTest --site-mail=a@b.c --account-name=admin --account-pass=root --account-mail=a@b.c
-  - ./../vendor/bin/drupal server 127.0.0.1:8080 &
+  - ./../bin/drupal --version
+  - ./../bin/drupal init
+  - ./../bin/drupal site:install --db-type=sqlite --db-file=sites/default/files/.ht.sqlite --no-interaction
+  - ./../bin/drupal server 127.0.0.1:8080 &
   - sleep 3
   # Skip core/tests/Drupal/Tests/ComposerIntegrationTest.php because web/ has no composer.json
-  # Skip core tests altogether - ./../vendor/bin/phpunit -c core --testsuite unit --exclude-group Composer
+  # Skip core tests altogether - ./../bin/phpunit -c core --testsuite unit --exclude-group Composer,DependencyInjection,PageCache
   # Exit if the install profile didn't default.
-  - ./../vendor/bin/drupal site:status || grep -q "DrupalOrange" || exit 1;
+  - ./../bin/drupal site:status || grep -q "DrupalOrange" || exit 1;
