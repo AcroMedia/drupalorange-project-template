@@ -4,6 +4,7 @@ vagrant_box: geerlingguy/ubuntu1604
 # machine name, and IP address for each instance.
 vagrant_hostname: drupalorange.local
 vagrant_machine_name: drupalorange
+vagrant_ip: 0.0.0.0
 
 # Ensure vagrant plugins are installed.
 vagrant_plugins:
@@ -112,6 +113,7 @@ php_date.timezone: "America/Chicago"
 php_upload_max_filesize: "50M"
 php_post_max_size: "50M"
 php_output_buffering: "Off"
+php_xdebug_remote_host: 10.20.1.1
 
 php_packages_extra:
   - "php{{ php_version }}-bcmath"
