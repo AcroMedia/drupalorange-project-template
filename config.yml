@@ -1,0 +1,131 @@
+---
+vagrant_box: geerlingguy/ubuntu1604
+# If you need to run multiple instances of Drupal VM, set a unique hostname,
+# machine name, and IP address for each instance.
+vagrant_hostname: drupalorange.local
+vagrant_machine_name: drupalorange
+
+# Ensure vagrant plugins are installed.
+vagrant_plugins:
+  - name: vagrant-auto_network
+  - name: vagrant-vbguest
+  - name: vagrant-hostmanager
+  - name: vagrant-hostsupdater
+
+# Set 'build_makefile' to 'false' and this to 'true' if you are using a
+# composer based site deployment strategy.
+build_composer: true
+drupal_composer_path: "{{ config_dir }}/composer.json"
+drupal_composer_install_dir: "/var/www/drupalvm"
+drupal_composer_dependencies: []
+
+# Set this to 'true' and 'build_makefile', 'build_composer' to 'false' if you
+# are using Composer's create-project as a site deployment strategy.
+build_composer_project: false
+drupal_composer_project_options: "--prefer-dist --stability dev --no-interaction -o"
+
+# Settings for installing a Drupal site if 'install_site:' is 'true'.
+drupal_major_version: 8
+drupal_domain: "{{ vagrant_hostname }}"
+drupal_site_name: "Drupal Orange"
+drupal_install_profile: "drupalorange_profile"
+drupal_enable_modules: []
+
+# Cron jobs are added to the vagrant user's crontab. Keys include name
+# (required), minute, hour, day, weekday, month, job (required), and state.
+drupalvm_cron_jobs:
+  - {
+    name: "Drupal Cron",
+    minute: "*/30",
+    job: "drush -r {{ drupal_core_path }} core-cron"
+  }
+
+# If migrating from D6 or D7 and need an extra db or two.
+# Databases.
+#drupal6_db_user: drupal6
+#drupal6_db_password: drupal6
+#drupal6_db_name: drupal6
+#drupal7_db_user: drupal7
+#drupal7_db_password: drupal7
+#drupal7_db_name: drupal7
+
+# MySQL databases and users.
+mysql_databases:
+  - name: "{{ drupal_db_name }}"
+    encoding: utf8
+    collation: utf8_general_ci
+#  - name: "{{ drupal6_db_name }}"
+#    encoding: utf8
+#    collation: utf8_general_ci
+#  - name: "{{ drupal7_db_name }}"
+#    encoding: utf8
+#    collation: utf8_general_ci
+
+mysql_users:
+  - name: "{{ drupal_db_user }}"
+    host: "%"
+    password: "{{ drupal_db_password }}"
+    priv: "{{ drupal_db_name }}.*:ALL"
+#  - name: "{{ drupal6_db_user }}"
+#    host: "%"
+#    password: "{{ drupal6_db_password }}"
+#    priv: "{{ drupal6_db_name }}.*:ALL"
+#  - name: "{{ drupal7_db_user }}"
+#    host: "%"
+#    password: "{{ drupal7_db_password }}"
+#    priv: "{{ drupal7_db_name }}.*:ALL"
+
+# Comment out any extra utilities you don't want to install. If you don't want
+# to install *any* extras, make set this value to an empty set, e.g. `[]`.
+installed_extras:
+  - adminer
+  # - blackfire
+  # - drupalconsole
+  - drush
+  # - elasticsearch
+  # - java
+  - mailhog
+  # - memcached
+  # - newrelic
+  - nodejs
+  - pimpmylog
+  # - redis
+  # - ruby
+  # - selenium
+  # - solr
+  # - upload-progress
+  # - varnish
+  - xdebug
+  # - xhprof
+
+# Add any extra apt or yum packages you would like installed.
+extra_packages:
+  - sqlite
+
+drush_version: "8.1.10"
+drush_keep_updated: true
+drush_composer_cli_options: "--prefer-dist --no-interaction -o --no-dev"
+
+# PHP Configuration. Currently-supported versions: 5.6, 7.0, 7.1.
+# See version-specific notes: http://docs.drupalvm.com/en/latest/configurations/php/
+php_date.timezone: "America/Chicago"
+php_upload_max_filesize: "50M"
+php_post_max_size: "50M"
+php_output_buffering: "Off"
+
+php_packages_extra:
+  - "php{{ php_version }}-bcmath"
+
+pre_provision_tasks_dir: "{{ config_dir }}/scripts/drupalvm/pre/*.yml"
+
+# MySQL Configuration.
+mysql_max_allowed_packet: 512M
+
+# Node.js configuration (if enabled above).
+# Valid examples: "0.10", "0.12", "4.x", "5.x".
+nodejs_version: "6.x"
+nodejs_npm_global_packages:
+  - name: yarn
+
+# Other configuration.
+ssh_home: "{{ drupal_core_path }}"
