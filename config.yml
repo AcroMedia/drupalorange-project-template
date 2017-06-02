@@ -41,8 +41,8 @@ drupalvm_cron_jobs:
     job: "drush -r {{ drupal_core_path }} core-cron"
   }
 
+# Extra databases.
 # If migrating from D6 or D7 and need an extra db or two.
-# Databases.
 #drupal6_db_user: drupal6
 #drupal6_db_password: drupal6
 #drupal6_db_name: drupal6
