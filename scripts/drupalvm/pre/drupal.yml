@@ -1,4 +1,18 @@
 ---
+- name: Check if settings.php is in place.
+  command: ls "{{ drupal_core_path }}/sites/default/settings.php"
+  changed_when: false
+  failed_when: false
+  register: settings_installed
+
+- name: Copy settings.php into place.
+  shell: >
+    cp "{{ drupal_composer_install_dir }}/scripts/seed/settings.php" "{{ drupal_core_path }}/sites/default/settings.php"
+    creates="{{ drupal_core_path }}/sites/default/settings.php"
+  when: settings_installed | failed
+  become: yes
+  become_user: "{{ composer_home_owner }}"
+
 - name: Check if settings.local.php is in place.
   command: ls "{{ drupal_core_path }}/sites/default/settings.local.php"
   changed_when: false
